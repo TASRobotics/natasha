@@ -19,4 +19,8 @@ def disconnect():
     print("I'm disconnected!")
 
 
-sio.connect('http://localhost:5000')
+sio.connect('http://localhost:5000', headers={"type": "python"})
+
+while True:
+    message = input("enter message: ")
+    sio.emit("message", message)

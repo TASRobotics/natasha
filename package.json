@@ -19,6 +19,7 @@
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
     "socket.io": "3.1.2",
+    "socket.io-client": "^4.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
@@ -29,7 +30,8 @@
     "server": "nodemon",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "python": "python3 ./python/main.py"
   },
   "eslintConfig": {
     "extends": [

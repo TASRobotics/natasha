@@ -10,9 +10,25 @@ const server = app.listen(PORT, () => {
 });
 
 const io = new Server(server, {
-  // ...
+  cors: {
+    origin: ['http://localhost:3000'],
+    credentials: true
+  }
 });
 
 io.on('connection', (socket: Socket) => {
-  console.log(socket);
+  console.log(socket.handshake.headers.type);
+  switch (socket.handshake.headers.type) {
+    case 'python':
+      socket.join('python');
+      socket.on('message', (message) => {
+        socket.to('web').emit('message', message);
+      });
+      break;
+    case 'web':
+      socket.join('web');
+      break;
+    default:
+      break;
+  }
 });
