@@ -24,6 +24,9 @@ io.on('connection', (socket: Socket) => {
       socket.on('message', (message) => {
         socket.to('web').emit('message', message);
       });
+      socket.on('data', (data) => {
+        socket.to('web').emit('data', data);
+      });
       break;
     case 'web':
       socket.join('web');

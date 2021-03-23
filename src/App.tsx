@@ -13,30 +13,10 @@ type Action = {
 };
 
 const App = () => {
-  const [messages, setMessages] = useState<string[]>([]);
-
-  useEffect(() => {
-    const socket = io('http://localhost:5000', {
-      extraHeaders: {
-        type: 'web'
-      }
-    });
-
-    socket.on('message', (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-
-  const reducer = (prevPoint: Point, { data }: Action) => {
-    return {
-      x: prevPoint.x + data.x,
-      y: prevPoint.y + data.y
-    };
+  const reducer = (_: Point, { data }: Action) => {
+    return data;
   };
+
   const Bunny = () => {
     const [motion, update] = useReducer(reducer, {
       x: 0,
@@ -44,29 +24,28 @@ const App = () => {
     });
 
     useEffect(() => {
-      document.addEventListener('keydown', (e: KeyboardEvent) => {
-        let data = { x: 0, y: 0 };
-        switch (e.keyCode) {
-          case 87:
-            data.y = -1;
-            break;
-          case 83:
-            data.y = 1;
-            break;
-          case 68:
-            data.x = 1;
-            break;
-          case 65:
-            data.x = -1;
-            break;
-          default:
-            break;
+      const socket = io('http://localhost:5000', {
+        extraHeaders: {
+          type: 'web'
         }
-        update({
-          type: 'update',
-          data
-        });
       });
+
+      socket.on('data', (data) => {
+        const { NOSE } = data;
+        if (parseFloat(NOSE.score) > 0.4) {
+          update({
+            type: 'update',
+            data: {
+              x: (parseFloat(NOSE.x) - 1) * 150,
+              y: (parseFloat(NOSE.y) - 1) * 150
+            }
+          });
+        }
+      });
+
+      return () => {
+        socket.disconnect();
+      };
     }, []);
 
     return (
