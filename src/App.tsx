@@ -1,67 +1,70 @@
-import React, { useState, useEffect, useReducer, useRef } from 'react';
-import { io } from 'socket.io-client';
-import { Stage, Sprite, useTick, Container } from '@inlet/react-pixi';
+import React, { useEffect, useContext } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Spin, Modal, Button } from 'antd';
+import axios from 'axios';
+import {
+  Home,
+  Auth,
+  Bedwars,
+  Valorant,
+  League,
+  Brawlstars,
+  CSGO,
+  AboutUs,
+  Rules,
+  MyAccount,
+  Admin
+} from './containers';
+import { LoadingContext, GameRegisterContext, UserContext } from './context';
+import { useAuth } from './hooks';
+import { PrivateRoute } from './components';
+import 'antd/dist/antd.css';
 
-type Point = {
-  x: number;
-  y: number;
-};
-
-type Action = {
-  type: string;
-  data: Point;
-};
+axios.defaults.baseURL = 'http://localhost:5000/api';
 
 const App = () => {
-  const reducer = (_: Point, { data }: Action) => {
-    return data;
-  };
+  const { loading } = useContext(LoadingContext);
+  const { gameRegister, stopGameRegister, getModalStep, title } = useContext(
+    GameRegisterContext
+  );
+  const { user } = useContext(UserContext);
+  const { setAuth } = useAuth();
 
-  const Bunny = () => {
-    const [motion, update] = useReducer(reducer, {
-      x: 0,
-      y: 0
-    });
-
-    useEffect(() => {
-      const socket = io('http://localhost:5000', {
-        extraHeaders: {
-          type: 'web'
-        }
-      });
-
-      socket.on('data', (data) => {
-        const { NOSE } = data;
-        if (parseFloat(NOSE.score) > 0.4) {
-          update({
-            type: 'update',
-            data: {
-              x: (parseFloat(NOSE.x) - 1) * 150,
-              y: (parseFloat(NOSE.y) - 1) * 150
-            }
-          });
-        }
-      });
-
-      return () => {
-        socket.disconnect();
-      };
-    }, []);
-
-    return (
-      <Sprite
-        image='https://s3-us-west-2.amazonaws.com/s.cdpn.io/693612/IaUrttj.png'
-        {...motion}
-      />
-    );
-  };
+  useEffect(() => {
+    setAuth(localStorage.token);
+  }, []);
 
   return (
-    <Stage width={300} height={300} options={{ transparent: true }}>
-      <Container x={150} y={150}>
-        <Bunny />
-      </Container>
-    </Stage>
+    <BrowserRouter>
+      <Spin spinning={loading} size='large'>
+        <Switch>
+          <PrivateRoute path='/myaccount'>{<MyAccount />}</PrivateRoute>
+          <Route path='/admin'>{<Admin />}</Route>
+          <Route path='/aboutus'>{<AboutUs />}</Route>
+          <Route path='/csgo'>{<CSGO />}</Route>
+          <Route path='/brawlstars'>{<Brawlstars />}</Route>
+          <Route path='/league'>{<League />}</Route>
+          <Route path='/valorant'>{<Valorant />}</Route>
+          <Route path='/bedwars'>{<Bedwars />}</Route>
+          <Route path='/auth'>{<Auth />}</Route>
+          <Route path='/rules'>{<Rules />}</Route>
+          <Route path='/'>{<Home />}</Route>
+        </Switch>
+        <Modal
+          title={`${title} Game Sign Up`}
+          visible={Boolean(gameRegister) && Boolean(user)}
+          onOk={() => {}}
+          onCancel={stopGameRegister}
+          footer={[
+            <Button key='back' onClick={stopGameRegister}>
+              Cancel
+            </Button>
+          ]}
+        >
+          {getModalStep()}
+        </Modal>
+      </Spin>
+    </BrowserRouter>
   );
 };
 
