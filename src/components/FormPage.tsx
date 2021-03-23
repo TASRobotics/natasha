@@ -112,7 +112,7 @@ export const FormPage: FC<FormPageProps> = ({
               >
                 {subtitle}
               </SubTitle>
-              {inputs.map(({ type, name, placeholder }) => (
+              {inputs.map(({ type, name, placeholder }, i) => (
                 <>
                   <Input
                     type={type}

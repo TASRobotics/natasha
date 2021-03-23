@@ -3,3 +3,4 @@ export * from './PrivateRoute';
 export * from './Button';
 export * from './Input';
 export * from './FormPage';
+export * from './SideBar';

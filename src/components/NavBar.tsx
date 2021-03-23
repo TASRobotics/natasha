@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { UserContext } from '../context';
 import { Button } from './Button';
+import { useAuth } from '../hooks';
 
 const Header = styled.header`
   display: flex;
@@ -50,9 +51,31 @@ const navBarItems = [
   { name: 'Pricing', route: '/pricing', style: { color: '#00C9DD' } }
 ];
 
-export const NavBar = () => {
+type NavBarProps = {
+  dashboard?: boolean;
+};
+
+export const NavBar: FC<NavBarProps> = ({ dashboard }) => {
   const history = useHistory();
   const { user } = useContext(UserContext);
+  const { setAuth } = useAuth();
+
+  if (dashboard && user) {
+    return (
+      <Header>
+        <Menu>
+          <Button
+            onClick={() => {
+              setAuth();
+              history.push('/');
+            }}
+          >
+            LOG OUT
+          </Button>
+        </Menu>
+      </Header>
+    );
+  }
 
   const navBarItemsNode = navBarItems.map(({ name, route, style }, i) => (
     <MenuItem
