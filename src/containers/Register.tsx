@@ -3,7 +3,7 @@ import { NavBar, Container } from '../components';
 import { Layout, Typography, Form, Input, Button } from 'antd';
 import { useAuth } from '../hooks';
 
-export const Auth = () => {
+export const Register = () => {
   const [loginBool, setLoginBool] = useState<boolean>(false);
   const { login, register } = useAuth();
 

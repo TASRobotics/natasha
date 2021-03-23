@@ -1,165 +1,95 @@
-import React, { useContext, useState } from 'react';
-import { Layout, Menu, Modal, Button } from 'antd';
+import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { UserContext } from '../context';
-import { useAuth } from '../hooks';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-const StyledHeader = styled.header`
+import { UserContext } from '../context';
+import { Button } from './Button';
+
+const Header = styled.header`
+  display: flex;
+  justify-content: center;
   background-color: #fff;
   color: #000;
+
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const StyledMenu = styled.ul`
+const Menu = styled.ul`
   height: 120px;
+  max-width: 1440px;
+  padding: 0px;
+  margin: 0px;
+
   display: flex;
+  flex: 1 0 auto;
   justify-content: flex-end;
-  align-content: center;
+  align-items: center;
 `;
 
-const StyledMenuItem = styled.li`
-  display: block;
-  padding: 20px;
+const MenuItem = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 11px;
+
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
+
+const navBarItems = [
+  { name: 'Home', route: '/' },
+  { name: 'User Guide', route: '/guide' },
+  { name: 'Games', route: '/games' },
+  { name: 'Contact Us', route: '/contact' },
+  { name: 'Pricing', route: '/pricing', style: { color: '#00C9DD' } }
+];
 
 export const NavBar = () => {
   const history = useHistory();
   const { user } = useContext(UserContext);
-  const [logoutModal, setLogoutModal] = useState<boolean>(false);
-  const { setAuth } = useAuth();
+
+  const navBarItemsNode = navBarItems.map(({ name, route, style }, i) => (
+    <MenuItem
+      key={i}
+      onClick={() => {
+        history.push(route);
+      }}
+      style={style}
+    >
+      {name}
+    </MenuItem>
+  ));
 
   return (
-    <StyledHeader>
-      <StyledMenu>
+    <Header>
+      <Menu>
+        {navBarItemsNode}
         {user ? (
-          <>
-            <StyledMenuItem
-              key='1a'
-              onClick={() => {
-                setLogoutModal(true);
-              }}
-            >
-              Log out
-            </StyledMenuItem>
-            <StyledMenuItem
-              key='1b'
-              onClick={() => {
-                history.push('/myaccount');
-              }}
-            >
-              My Account
-            </StyledMenuItem>
-          </>
+          <Button
+            key='1b'
+            onClick={() => {
+              history.push('/dashboard');
+            }}
+          >
+            Dashboard
+          </Button>
         ) : (
-          <StyledMenuItem
+          <Button
             key='1'
             onClick={() => {
-              history.push('/auth');
+              history.push('/login');
             }}
           >
-            Log in
-          </StyledMenuItem>
-        )}
-        <StyledMenuItem
-          key='2'
-          onClick={() => {
-            history.push('/');
-          }}
-        >
-          Home
-        </StyledMenuItem>
-
-        <StyledMenuItem
-          key='3'
-          onClick={() => {
-            history.push('/rules');
-          }}
-        >
-          Rules
-        </StyledMenuItem>
-        <StyledMenuItem
-          key='5'
-          onClick={() => {
-            history.push('/bedwars');
-          }}
-        >
-          Bedwars
-        </StyledMenuItem>
-
-        <StyledMenuItem
-          key='6'
-          onClick={() => {
-            history.push('/league');
-          }}
-        >
-          League of Legends
-        </StyledMenuItem>
-        <StyledMenuItem
-          key='7'
-          onClick={() => {
-            history.push('/valorant');
-          }}
-        >
-          Valorant
-        </StyledMenuItem>
-        <StyledMenuItem
-          key='8'
-          onClick={() => {
-            history.push('/brawlstars');
-          }}
-        >
-          Brawl Stars
-        </StyledMenuItem>
-        <StyledMenuItem
-          key='4'
-          onClick={() => {
-            history.push('/csgo');
-          }}
-        >
-          CS:GO
-        </StyledMenuItem>
-        <StyledMenuItem
-          key='9'
-          onClick={() => {
-            history.push('/aboutus');
-          }}
-        >
-          About Us
-        </StyledMenuItem>
-      </StyledMenu>
-      <Modal
-        title='Logout'
-        visible={logoutModal}
-        onOk={() => {
-          setAuth();
-          setLogoutModal(false);
-        }}
-        onCancel={() => {
-          setLogoutModal(false);
-        }}
-        footer={[
-          <Button
-            key='back'
-            onClick={() => {
-              setLogoutModal(false);
-            }}
-          >
-            No
-          </Button>,
-          <Button
-            key='submit'
-            type='primary'
-            onClick={() => {
-              setAuth();
-              setLogoutModal(false);
-            }}
-          >
-            Yes
+            LOG IN
           </Button>
-        ]}
-      >
-        Are you sure you want to logout?
-      </Modal>
-    </StyledHeader>
+        )}
+      </Menu>
+    </Header>
   );
 };

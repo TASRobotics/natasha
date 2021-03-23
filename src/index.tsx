@@ -9,6 +9,8 @@ import {
 } from './context';
 import './index.css';
 
+require('typeface-poppins');
+
 ReactDOM.render(
   <UserContextProvider>
     <LoadingContextProvider>
