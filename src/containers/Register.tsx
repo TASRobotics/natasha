@@ -6,7 +6,7 @@ import { useAuth } from '../hooks';
 import { FormPage } from '../components';
 import { UserContext } from '../context';
 
-export const Login = () => {
+export const Register = () => {
   const history = useHistory();
 
   const { user } = useContext(UserContext);
@@ -14,10 +14,19 @@ export const Login = () => {
     history.push('/dashboard');
   }
 
-  const { login } = useAuth();
+  const { register } = useAuth();
 
   const validate = (values: { [key: string]: string }) => {
-    const errors: { email?: string; password?: string } = {};
+    const errors: { [key: string]: string } = {};
+
+    if (!values.firstName) {
+      errors.firstName = 'Required';
+    }
+
+    if (!values.lastName) {
+      errors.lastName = 'Required';
+    }
+
     if (!values.email) {
       errors.email = 'Required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
@@ -40,23 +49,25 @@ export const Login = () => {
       [key: string]: string;
     }>
   ) => {
-    await login(values);
+    await register(values);
     setSubmitting(false);
   };
 
   return (
     <FormPage
-      title='Login to NATASHA'
-      subtitle='First time? Sign up now ->'
-      subtitleRoute='/register'
-      initialValues={{ email: '', password: '' }}
+      title='Sign Up to NATASHA'
+      subtitle='Already have an account? Log in ->'
+      subtitleRoute='/login'
+      initialValues={{ firstName: '', lastName: '', email: '', password: '' }}
       validate={validate}
       handleSubmit={handleSubmit}
       inputs={[
+        { type: 'text', name: 'firstName', placeholder: 'First Name' },
+        { type: 'text', name: 'lastName', placeholder: 'Last Name' },
         { type: 'email', name: 'email', placeholder: 'Email' },
         { type: 'password', name: 'password', placeholder: 'Password' }
       ]}
-      button='LOGIN'
+      button='SUBMIT'
     />
   );
 };

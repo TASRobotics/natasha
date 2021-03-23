@@ -102,14 +102,14 @@ const useAuth = () => {
     const { token } = await post('/auth', content);
     if (!token) return;
     await setAuth(token);
-    history.push('/');
+    history.push('/dashboard');
   };
 
   const register = async (content: object) => {
     const { token } = await post('/users', content);
     if (!token) return;
     await setAuth(token);
-    history.push('/');
+    history.push('/dashboard');
   };
 
   const editUser = async (content: object) => {
