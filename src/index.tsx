@@ -4,7 +4,6 @@ import App from './App';
 import {
   UserContextProvider,
   LoadingContextProvider,
-  GameRegisterContextProvider,
   MobileContextProvider
 } from './context';
 import './index.css';
@@ -14,11 +13,9 @@ require('typeface-poppins');
 ReactDOM.render(
   <UserContextProvider>
     <LoadingContextProvider>
-      <GameRegisterContextProvider>
-        <MobileContextProvider>
-          <App />
-        </MobileContextProvider>
-      </GameRegisterContextProvider>
+      <MobileContextProvider>
+        <App />
+      </MobileContextProvider>
     </LoadingContextProvider>
   </UserContextProvider>,
   document.getElementById('root')

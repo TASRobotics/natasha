@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../hooks';
 import { Button, Input } from '../components';
@@ -28,7 +28,7 @@ const Container = styled.div`
 `;
 
 const Form = styled.form`
-  width: 566px;
+  width: 585px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,23 +45,35 @@ const SubTitle = styled.div`
   font-size: 12px;
   font-weight: 700;
   color: #00c9dd;
+
+  text-transform: uppercase;
+  margin-bottom: 34px;
+
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const Login = () => {
-  const [loginBool, setLoginBool] = useState<boolean>(false);
-  const { login, register } = useAuth();
+  const history = useHistory();
+  const { login } = useAuth();
 
   const validate = (values: { email: string; password: string }) => {
-    const errors: { email?: string } = {};
+    const errors: { email?: string; password?: string } = {};
     if (!values.email) {
       errors.email = 'Required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
       errors.email = 'Invalid email address';
     }
+
+    if (!values.password) {
+      errors.password = 'Required';
+    }
     return errors;
   };
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: { email: string; password: string },
     {
       setSubmitting
@@ -70,10 +82,8 @@ export const Login = () => {
       password: string;
     }>
   ) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 400);
+    await login(values);
+    setSubmitting(false);
   };
 
   return (
@@ -95,25 +105,39 @@ export const Login = () => {
             /* and other goodies */
           }) => (
             <Form onSubmit={handleSubmit}>
-              <input
+              <Title>Login to NATASHA</Title>
+              <SubTitle
+                onClick={() => {
+                  history.push('/register');
+                }}
+              >
+                First time? Sign up now {`->`}
+              </SubTitle>
+              <Input
                 type='email'
                 name='email'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
+                placeholder='Email'
               />
               {errors.email && touched.email && errors.email}
-              <input
+              <Input
                 type='password'
                 name='password'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
+                placeholder='Password'
               />
               {errors.password && touched.password && errors.password}
-              <button type='submit' disabled={isSubmitting}>
-                Submit
-              </button>
+              <Button
+                type='submit'
+                disabled={isSubmitting}
+                style={{ marginTop: 29 }}
+              >
+                Login
+              </Button>
             </Form>
           )}
         </Formik>
