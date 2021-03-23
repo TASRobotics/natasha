@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb+srv://admin:mXd7FA97eDAQwqWR@tas-gaming-tournament.dye1h.mongodb.net/tas-gaming-tournament?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://admin:Ilovemy88@cluster0.rjlzk.mongodb.net/natasha?retryWrites=true&w=majority",
   "jwtSecret": "B7F18588B7DF79C361F9B77FF5E4CF50C795B7856B6E7509596732AE3B6C6A22",
   "adminKey": "6dW8dbKYfuj6uq2L"
 }

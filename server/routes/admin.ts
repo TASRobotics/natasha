@@ -2,7 +2,6 @@ import express from 'express';
 import config from 'config';
 import User from '../models/User';
 import Message from '../models/Message';
-import Donation from '../models/Donation';
 
 const router = express.Router();
 
@@ -15,8 +14,7 @@ router.get('/', async (req, res) => {
     try {
       const users = await User.find().sort({ date: -1 });
       const messages = await Message.find().sort({ date: -1 });
-      const donations = await Donation.find().sort({ date: -1 });
-      res.json({ users, messages, donations });
+      res.json({ users, messages });
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
