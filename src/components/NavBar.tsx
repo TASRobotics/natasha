@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { UserContext } from '../context';
 import { Button } from './Button';
 import { useAuth } from '../hooks';
+import Logo from '../assets/images/logo.png';
 
 const Header = styled.header`
   display: flex;
@@ -41,6 +42,12 @@ const MenuItem = styled.li`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const Img = styled.img`
+  width: 120px;
+  height: 120px;
+  margin-right: auto;
 `;
 
 const navBarItems = [
@@ -92,6 +99,7 @@ export const NavBar: FC<NavBarProps> = ({ dashboard }) => {
   return (
     <Header>
       <Menu>
+        <Img src={Logo} alt='logo' />
         {navBarItemsNode}
         {user ? (
           <Button

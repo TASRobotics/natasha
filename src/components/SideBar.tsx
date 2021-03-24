@@ -5,9 +5,14 @@ const Aside = styled.aside`
   flex: 0 0 364px;
   min-width: 364px;
   max-width: 364px;
-  height: 100%;
+  height: calc(100%+120px);
   background-color: #fff;
   z-index: -1;
+  margin-top: -120px;
+  padding-top: 120px;
+
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 0px 10px 10px;
 `;
 
 const Menu = styled.ul``;

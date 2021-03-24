@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import { Button } from './Button';
 import { Input } from './Input';
+import { Title } from './Title';
 
 const Background = styled.div`
   display: flex;
@@ -34,13 +35,6 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const Title = styled.div`
-  font-size: 64px;
-  font-weight: 700;
-  color: #00c9dd;
-  white-space: nowrap;
 `;
 
 const SubTitle = styled.div`
