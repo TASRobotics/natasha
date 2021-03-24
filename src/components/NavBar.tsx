@@ -12,6 +12,7 @@ const Header = styled.header`
   justify-content: center;
   background-color: #fff;
   color: #000;
+  z-index: 999;
 
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -48,6 +49,7 @@ const Img = styled.img`
   width: 120px;
   height: 120px;
   margin-right: auto;
+  cursor: pointer;
 `;
 
 const navBarItems = [
@@ -67,10 +69,21 @@ export const NavBar: FC<NavBarProps> = ({ dashboard }) => {
   const { user } = useContext(UserContext);
   const { setAuth } = useAuth();
 
+  const imgNode = (
+    <Img
+      src={Logo}
+      alt='logo'
+      onClick={() => {
+        history.push('/');
+      }}
+    />
+  );
+
   if (dashboard && user) {
     return (
       <Header>
         <Menu>
+          {imgNode}
           <Button
             onClick={() => {
               setAuth();
@@ -99,7 +112,7 @@ export const NavBar: FC<NavBarProps> = ({ dashboard }) => {
   return (
     <Header>
       <Menu>
-        <Img src={Logo} alt='logo' />
+        {imgNode}
         {navBarItemsNode}
         {user ? (
           <Button

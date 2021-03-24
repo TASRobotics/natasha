@@ -9,3 +9,4 @@ export * from './KeyBenefits';
 export * from './Testimonials';
 export * from './UserSteps';
 export * from './Bottom';
+export * from './Title';

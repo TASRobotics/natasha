@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
-
-type Game = {
-  participating: boolean;
-  teammates: string[];
-  name: string;
-  captain: boolean;
-};
-
 export type User = {
-  bedwars: Game;
-  league: Game;
-  valorant: Game;
-  brawlstars: Game;
-  csgo: Game;
-  discord: string;
+  firstName: string;
+  lastName: string;
+  email: string;
 };
 
 type UserContextProps = {
