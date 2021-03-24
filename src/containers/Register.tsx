@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { FormikHelpers } from 'formik';
 import { useHistory } from 'react-router-dom';
+import RegisterImg from '../assets/images/register.png';
 
 import { useAuth } from '../hooks';
 import { FormPage } from '../components';
@@ -68,6 +69,7 @@ export const Register = () => {
         { type: 'password', name: 'password', placeholder: 'Password' }
       ]}
       button='SUBMIT'
+      img={RegisterImg}
     />
   );
 };

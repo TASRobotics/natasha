@@ -51,6 +51,11 @@ const SubTitle = styled.div`
   }
 `;
 
+const Label = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+`;
+
 type FormPageProps = {
   title: string;
   subtitle: string;
@@ -65,6 +70,7 @@ type FormPageProps = {
   ) => void | Promise<any>;
   inputs: { type: string; name: string; placeholder: string }[];
   button: string;
+  img: string;
 };
 
 export const FormPage: FC<FormPageProps> = ({
@@ -75,13 +81,15 @@ export const FormPage: FC<FormPageProps> = ({
   validate,
   handleSubmit,
   inputs,
-  button
+  button,
+  img
 }) => {
   const history = useHistory();
 
   return (
     <Background>
       <Container>
+        <img src={img} alt='form' />
         <Formik
           initialValues={initialValues}
           validate={validate}
@@ -107,7 +115,8 @@ export const FormPage: FC<FormPageProps> = ({
                 {subtitle}
               </SubTitle>
               {inputs.map(({ type, name, placeholder }, i) => (
-                <>
+                <div>
+                  <Label>{placeholder}</Label>
                   <Input
                     type={type}
                     name={name}
@@ -116,8 +125,8 @@ export const FormPage: FC<FormPageProps> = ({
                     onBlur={handleBlur}
                     value={values[name]}
                   ></Input>
-                  {errors[name] && touched[name] && errors[name]}
-                </>
+                  <div>{errors[name] && touched[name] && errors[name]}</div>
+                </div>
               ))}
               <Button
                 type='submit'

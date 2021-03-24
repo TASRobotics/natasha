@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { FormikHelpers } from 'formik';
 import { useHistory } from 'react-router-dom';
+import LoginImg from '../assets/images/login.png';
 
 import { useAuth } from '../hooks';
 import { FormPage } from '../components';
@@ -57,6 +58,7 @@ export const Login = () => {
         { type: 'password', name: 'password', placeholder: 'Password' }
       ]}
       button='LOGIN'
+      img={LoginImg}
     />
   );
 };
