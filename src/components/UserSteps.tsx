@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import { Title } from './Title';
@@ -21,12 +22,26 @@ const Catchphrase = styled.div`
   font-weight: 500;
 `;
 
-export const UserSteps = () => {
-  return (
-    <Container>
-      <Catchphrase>This is. A Catch Phrase.</Catchphrase>
+type UserStepsProps = {
+  guide?: boolean;
+};
+
+export const UserSteps: FC<UserStepsProps> = ({ guide }) => {
+  const titleNode = guide ? (
+    <Title>User Guide to NATASHA</Title>
+  ) : (
+    <>
       <Title>Your first three steps to</Title>
       <Title>your next great step</Title>
+    </>
+  );
+
+  return (
+    <Container>
+      <Catchphrase>
+        {guide ? 'Try it. Feel It.' : 'This is. A Catch Phrase.'}
+      </Catchphrase>
+      {titleNode}
       <UserStep
         direction='right'
         title='Connect'
