@@ -12,3 +12,4 @@ export * from './Bottom';
 export * from './Title';
 export * from './GamesDescriptions';
 export * from './ContactUsPage';
+export * from './PricingPage';

@@ -9,7 +9,8 @@ import {
   Dashboard,
   Guide,
   Games,
-  Contact
+  Contact,
+  Pricing
 } from './containers';
 import { LoadingContext } from './context';
 import { useAuth } from './hooks';
@@ -31,6 +32,7 @@ const App = () => {
       <Spin spinning={loading} size='large'>
         <Switch>
           <PrivateRoute path='/dashboard'>{<Dashboard />}</PrivateRoute>
+          <Route path='/pricing'>{<Pricing />}</Route>
           <Route path='/contact'>{<Contact />}</Route>
           <Route path='/games'>{<Games />}</Route>
           <Route path='/guide'>{<Guide />}</Route>
