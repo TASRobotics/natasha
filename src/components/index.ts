@@ -11,3 +11,4 @@ export * from './UserSteps';
 export * from './Bottom';
 export * from './Title';
 export * from './GamesDescriptions';
+export * from './ContactUsPage';
