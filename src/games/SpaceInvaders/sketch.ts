@@ -121,17 +121,6 @@ export const draw = (p5: p5Types) => {
   frameCount++;
   streak = p5.max(streak - 0.02, 0);
 
-  //logic
-  if (p5.mouseIsPressed) {
-    move(p5);
-  }
-  if (p5.keyIsDown(p5.LEFT_ARROW)) {
-    player.move(-SCALE);
-    console.log(player.pos);
-  } else if (p5.keyIsDown(p5.RIGHT_ARROW)) {
-    player.move(SCALE);
-    console.log(player.pos);
-  }
   player.update(frameCount);
 
   for (let bullet of invaderBullets) {
@@ -238,16 +227,6 @@ export const keyPressed = (p5: p5Types) => {
 
   if (p5.key === 'r') {
     restart(p5);
-  }
-};
-
-const move = (p5: p5Types) => {
-  if (p5.mouseY < p5.height / 2) {
-    player.shoot(bullets);
-  } else if (p5.mouseX > p5.width / 2) {
-    player.move(SCALE);
-  } else if (p5.mouseX < p5.width / 2) {
-    player.move(-p5.scale);
   }
 };
 
