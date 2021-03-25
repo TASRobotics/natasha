@@ -17,6 +17,8 @@ import { useAuth } from './hooks';
 import { PrivateRoute } from './components';
 import 'antd/dist/antd.css';
 
+import { SpaceInvaders } from './games';
+
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
 const App = () => {
@@ -32,6 +34,7 @@ const App = () => {
       <Spin spinning={loading} size='large'>
         <Switch>
           <PrivateRoute path='/dashboard'>{<Dashboard />}</PrivateRoute>
+          <Route path='/spaceinvaders'>{<SpaceInvaders />}</Route>
           <Route path='/pricing'>{<Pricing />}</Route>
           <Route path='/contact'>{<Contact />}</Route>
           <Route path='/games'>{<Games />}</Route>
