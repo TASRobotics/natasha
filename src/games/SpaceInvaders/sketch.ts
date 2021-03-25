@@ -1,5 +1,5 @@
 import p5Types from 'p5';
-import { SCALE } from './config';
+import { SCALE, SHOOT_INTERVAL } from './config';
 import { Invader, Player, Bullet } from './Sprite';
 import BulletImg from './bullet.png';
 import InvaderImg from './invader.png';
@@ -27,6 +27,8 @@ let frameCount = 0;
 let invaderSpeed = 1;
 
 let playerLives: number, score: number, win: boolean, streak: number;
+
+let shootInterval: NodeJS.Timeout;
 
 export const preload = (p5: p5Types) => {
   invaderImg = p5.loadImage(InvaderImg);
@@ -96,6 +98,10 @@ export const setup = (p5: p5Types, parentRef: Element) => {
   MOVE_INTERVAL = 30;
 
   p5.loop();
+
+  shootInterval = setInterval(() => {
+    player.shoot(bullets);
+  }, SHOOT_INTERVAL);
 };
 
 export const draw = (p5: p5Types) => {
@@ -183,7 +189,7 @@ export const draw = (p5: p5Types) => {
   p5.text(`Lives ${playerLives}\nStreak ${Math.round(streak * 10) / 10}`, 0, 0);
   p5.textAlign(p5.RIGHT, p5.TOP);
   p5.fill(win ? 0 : 255, 255, win ? 0 : 255);
-  p5.text(`${score}\nHi ${hs()}`, p5.width, 0);
+  p5.text(`${score}`, p5.width, 0);
 
   if (playerLives < 0) {
     p5.textAlign(p5.CENTER, p5.CENTER);
@@ -200,7 +206,7 @@ export const draw = (p5: p5Types) => {
 
     p5.textAlign(p5.RIGHT, p5.TOP);
     p5.fill(win ? 0 : 255, 255, win ? 0 : 255);
-    p5.text(`${score}\nHi ${hs()}`, p5.width, 0);
+    // p5.text(`${score}\nHi ${hs()}`, p5.width, 0);
 
     p5.textAlign(p5.CENTER, p5.CENTER);
     p5.textSize(64);
@@ -211,9 +217,9 @@ export const draw = (p5: p5Types) => {
 };
 
 export const keyPressed = (p5: p5Types) => {
-  if (p5.keyCode === p5.UP_ARROW) {
-    player.shoot(bullets);
-  }
+  // if (p5.keyCode === p5.UP_ARROW) {
+  //   player.shoot(bullets);
+  // }
 
   if (p5.key === 'r') {
     restart(p5);
@@ -252,6 +258,7 @@ const gameOver = (p5: p5Types) => {
 const restart = (p5: p5Types) => {
   p5.redraw();
   p5.noLoop();
+  clearInterval(shootInterval);
 
   setTimeout(() => {
     invaders = [];
