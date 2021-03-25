@@ -8,6 +8,7 @@ import { useAuth } from '../hooks';
 import Logo from '../assets/images/logo.png';
 
 const Header = styled.header`
+  position: relative;
   display: flex;
   justify-content: center;
   background-color: #fff;

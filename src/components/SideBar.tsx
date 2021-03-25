@@ -9,7 +9,6 @@ const Aside = styled.aside`
   flex: 0 0 364px;
   min-width: 364px;
   max-width: 364px;
-  height: calc(100%+120px);
   background-color: #fff;
   margin-top: -120px;
   padding-top: 120px;

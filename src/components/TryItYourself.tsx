@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Title } from './Title';
+import { SubTitle } from './SubTitle';
+import { Link as BaseLink } from './Link';
 
 const Container = styled.div`
   background-color: #007985;
@@ -9,12 +11,6 @@ const Container = styled.div`
   align-items: center;
 
   height: 478px;
-`;
-
-const Text = styled.div`
-  color: #00c9dd;
-  font-size: 24px;
-  font-weight: 500;
 `;
 
 const Button = styled.button`
@@ -44,21 +40,21 @@ const ButtonDiv = styled.div`
   margin-top: 12px;
 `;
 
-const ButtonLabel = styled.div`
-  font-size: 14px;
-  font-weight: 500;
+const Link = styled(BaseLink)`
   color: #fff;
+  font-weight: 500;
   margin-left: 15px;
+  font-size: 14px;
 `;
 
 export const TryItYourself = () => {
   return (
     <Container>
-      <Text>Try it yourself!</Text>
+      <SubTitle>Try it yourself!</SubTitle>
       <Title>NATASHA is ready for you</Title>
       <ButtonDiv>
         <Button>GET STARTED FOR FREE</Button>
-        <ButtonLabel>Questions? Contact Us {'->'}</ButtonLabel>
+        <Link>Questions? Contact Us {'->'}</Link>
       </ButtonDiv>
     </Container>
   );

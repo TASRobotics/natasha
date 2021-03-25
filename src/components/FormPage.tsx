@@ -40,7 +40,7 @@ const Form = styled.form`
 const SubTitle = styled.div`
   font-size: 12px;
   font-weight: 700;
-  color: #00c9dd;
+  color: #007985;
 
   text-transform: uppercase;
   margin-bottom: 34px;

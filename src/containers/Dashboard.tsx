@@ -2,10 +2,7 @@ import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 
 import { NavBar, SideBar } from '../components';
-import { Account } from './Account';
-import { Games } from './Games';
-import { Therapist } from './Therapist';
-import { Help } from './Help';
+import { Account, Games, Therapist, Help } from './DashboardPages';
 
 const Container = styled.div`
   display: flex;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { Title } from './Title';
 import { UserStep } from './UserStep';
+import { Link } from './Link';
 import { SubTitle } from './SubTitle';
 import StepOne from '../assets/images/stepone.png';
 import StepTwo from '../assets/images/steptwo.png';
@@ -14,12 +15,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 80px 0px 106px 0px;
-`;
-
-const Catchphrase = styled.div`
-  color: #00c9dd;
-  font-size: 24px;
-  font-weight: 500;
 `;
 
 type UserStepsProps = {
@@ -38,9 +33,9 @@ export const UserSteps: FC<UserStepsProps> = ({ guide }) => {
 
   return (
     <Container>
-      <Catchphrase>
+      <SubTitle>
         {guide ? 'Try it. Feel It.' : 'This is. A Catch Phrase.'}
-      </Catchphrase>
+      </SubTitle>
       {titleNode}
       <UserStep
         direction='right'
@@ -75,7 +70,7 @@ export const UserSteps: FC<UserStepsProps> = ({ guide }) => {
         ]}
         img={StepThree}
       />
-      <SubTitle>LEARN MORE {'->'}</SubTitle>
+      <Link>LEARN MORE {'->'}</Link>
     </Container>
   );
 };

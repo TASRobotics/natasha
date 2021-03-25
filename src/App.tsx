@@ -2,7 +2,7 @@ import { useEffect, useContext } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Spin } from 'antd';
 import axios from 'axios';
-import { Home, Login, Register, Dashboard, Guide } from './containers';
+import { Home, Login, Register, Dashboard, Guide, Games } from './containers';
 import { LoadingContext } from './context';
 import { useAuth } from './hooks';
 import { PrivateRoute } from './components';
@@ -23,6 +23,7 @@ const App = () => {
       <Spin spinning={loading} size='large'>
         <Switch>
           <PrivateRoute path='/dashboard'>{<Dashboard />}</PrivateRoute>
+          <Route path='/games'>{<Games />}</Route>
           <Route path='/guide'>{<Guide />}</Route>
           <Route path='/register'>{<Register />}</Route>
           <Route path='/login'>{<Login />}</Route>

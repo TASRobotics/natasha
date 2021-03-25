@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Profile from '../assets/images/profile.png';
 import { Testimonial } from './Testimonial';
-import { SubTitle } from './SubTitle';
+import { Link } from './Link';
 
 const Container = styled.div`
   padding: 24px 0px;
@@ -29,7 +29,7 @@ export const Testimonials = () => {
         description='xx stroke patient'
         img={Profile}
       />
-      <SubTitle>READ MORE STORIES {'->'}</SubTitle>
+      <Link>READ MORE STORIES {'->'}</Link>
     </Container>
   );
 };

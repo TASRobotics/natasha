@@ -1,21 +1,11 @@
-import { useContext } from 'react';
-import styled from 'styled-components';
-import { Title as BaseTitle } from '../components';
-
-import { UserContext } from '../context';
-
-const Title = styled(BaseTitle)`
-  color: #000;
-`;
+import { NavBar, GamesDescriptions, Bottom } from '../components';
 
 export const Games = () => {
-  const { user } = useContext(UserContext);
-
-  if (!user) return <></>;
-
   return (
     <div>
-      <Title>Games</Title>
+      <NavBar />
+      <GamesDescriptions />
+      <Bottom />
     </div>
   );
 };
