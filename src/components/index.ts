@@ -13,3 +13,4 @@ export * from './Title';
 export * from './GamesDescriptions';
 export * from './ContactUsPage';
 export * from './PricingPage';
+export * from './GameSelection';

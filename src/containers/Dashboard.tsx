@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   padding: 80px 90px;
+  width: 100%;
 `;
 
 export const Dashboard = () => {
