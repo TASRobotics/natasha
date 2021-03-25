@@ -1,6 +1,6 @@
 import p5Types from 'p5';
-import { SHOT_PAUSE, PLAYER_INVINCIBLE, SCALE } from './config';
-import { mult, add } from './helpers';
+import { SHOT_PAUSE, PLAYER_INVINCIBLE, SCALE, CANVAS_SIZE } from './config';
+import { add } from './helpers';
 
 export class Sprite {
   p5: p5Types;
@@ -143,8 +143,9 @@ export class Player extends Sprite {
     this.visible = this.invincible ? frameCount % 20 >= 20 / 2 : true;
   }
 
-  move(dir: number) {
-    this.pos.add(mult(this.p5, this.vel, Math.sign(dir)));
+  move(x: number) {
+    // this.pos.add(mult(this.p5, this.vel, Math.sign(dir)));
+    this.pos = this.p5.createVector(x * this.maxX, this.pos.y);
   }
 
   shoot(bullets: Bullet[]) {
@@ -165,6 +166,9 @@ export class Player extends Sprite {
   }
   set invincible(inv) {
     this.invincibleCounter = inv ? PLAYER_INVINCIBLE : 0;
+  }
+  get maxX() {
+    return CANVAS_SIZE - this.width();
   }
 
   draw() {

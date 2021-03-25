@@ -1,11 +1,12 @@
 import p5Types from 'p5';
-import { SCALE, SHOOT_INTERVAL } from './config';
+import { io } from 'socket.io-client';
+
+import { SCALE, SHOOT_INTERVAL, CANVAS_SIZE } from './config';
 import { Invader, Player, Bullet } from './Sprite';
 import BulletImg from './bullet.png';
 import InvaderImg from './invader.png';
 import Invader2Img from './invader2.png';
 import SpaceshipImg from './spaceship.png';
-
 import { mult } from './helpers';
 
 //how many frames it takes to move a space invader
@@ -30,6 +31,19 @@ let playerLives: number, score: number, win: boolean, streak: number;
 
 let shootInterval: NodeJS.Timeout;
 
+const socket = io('http://localhost:5000', {
+  extraHeaders: {
+    type: 'web'
+  }
+});
+
+socket.on('data', (data) => {
+  const { RIGHT_WRIST } = data;
+  if (parseFloat(RIGHT_WRIST.score) > 0.4) {
+    player.move(parseFloat(RIGHT_WRIST.x));
+  }
+});
+
 export const preload = (p5: p5Types) => {
   invaderImg = p5.loadImage(InvaderImg);
   invader2Img = p5.loadImage(Invader2Img);
@@ -41,11 +55,8 @@ export const preload = (p5: p5Types) => {
 };
 
 export const setup = (p5: p5Types, parentRef: Element) => {
-  console.log(Math.min(500, window.innerWidth));
-  p5.createCanvas(
-    Math.min(500, window.innerWidth),
-    Math.min(500, window.innerWidth)
-  ).parent(parentRef);
+  console.log(CANVAS_SIZE);
+  p5.createCanvas(CANVAS_SIZE, CANVAS_SIZE).parent(parentRef);
   p5.noSmooth();
   // p5.textFont(invaderFont);
 
@@ -114,8 +125,10 @@ export const draw = (p5: p5Types) => {
   }
   if (p5.keyIsDown(p5.LEFT_ARROW)) {
     player.move(-SCALE);
+    console.log(player.pos);
   } else if (p5.keyIsDown(p5.RIGHT_ARROW)) {
     player.move(SCALE);
+    console.log(player.pos);
   }
   player.update(frameCount);
 

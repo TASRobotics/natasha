@@ -4,3 +4,4 @@ export const SHOT_PAUSE = 300;
 export const PLAYER_INVINCIBLE = 60 * 2 - 20;
 export const SCALE = 3;
 export const SHOOT_INTERVAL = 500;
+export const CANVAS_SIZE = 500;
