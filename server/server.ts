@@ -64,6 +64,9 @@ const io = new Server(server, {
 
 io.on('connection', (socket: Socket) => {
   console.log(socket.handshake.headers.type);
+  socket.on('disconnect', () => {
+    console.log(`${socket.handshake.headers.type} disconnect`);
+  });
   switch (socket.handshake.headers.type) {
     case 'python':
       socket.join('python');

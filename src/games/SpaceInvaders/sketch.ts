@@ -1,5 +1,4 @@
 import p5Types from 'p5';
-import { io, Socket } from 'socket.io-client';
 
 import { SCALE, SHOOT_INTERVAL, CANVAS_SIZE } from './config';
 import { Invader, Player, Bullet } from './Sprite';
@@ -30,8 +29,6 @@ let invaderSpeed = 1;
 let playerLives: number, score: number, win: boolean, streak: number;
 
 let shootInterval: NodeJS.Timeout;
-
-let socket: Socket;
 
 export const preload = (p5: p5Types) => {
   invaderImg = p5.loadImage(InvaderImg);
@@ -102,25 +99,13 @@ export const setup = (p5: p5Types, parentRef: Element) => {
   shootInterval = setInterval(() => {
     player.shoot(bullets);
   }, SHOOT_INTERVAL);
-
-  socket = io('http://localhost:5000', {
-    extraHeaders: {
-      type: 'web'
-    }
-  });
-
-  socket.on('data', (data) => {
-    const { RIGHT_WRIST } = data;
-    if (parseFloat(RIGHT_WRIST.score) > 0.4) {
-      player.move(parseFloat(RIGHT_WRIST.x));
-    }
-  });
 };
 
-export const draw = (p5: p5Types) => {
+export const draw = (p5: p5Types, pos: number) => {
   frameCount++;
   streak = p5.max(streak - 0.02, 0);
 
+  player.move(pos);
   player.update(frameCount);
 
   for (let bullet of invaderBullets) {
@@ -253,7 +238,6 @@ const restart = (p5: p5Types) => {
   p5.redraw();
   p5.noLoop();
   clearInterval(shootInterval);
-  socket.disconnect();
 
   setTimeout(() => {
     invaders = [];
@@ -262,7 +246,7 @@ const restart = (p5: p5Types) => {
     player.pos.x = p5.width / 2;
 
     p5.setup();
-  }, 3000);
+  }, 500);
 };
 
 //returns high score read from browser cookie. That's not a bad cookie!
