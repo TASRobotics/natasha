@@ -40,14 +40,14 @@ export const preload = (p5: p5Types) => {
   bulletImg = p5.loadImage(BulletImg);
 
   //"cosmic alien" font
-  // invaderFont = p5.loadFont('ca.ttf');
+  invaderFont = p5.loadFont('http://localhost:5000/cosmicalienfont.ttf');
 };
 
 export const setup = (p5: p5Types, parentRef: Element) => {
   console.log(CANVAS_SIZE);
   p5.createCanvas(CANVAS_SIZE, CANVAS_SIZE).parent(parentRef);
   p5.noSmooth();
-  // p5.textFont(invaderFont);
+  p5.textFont(invaderFont);
 
   //create barrier image
   barrierImg = p5.createImage(1, 1);
