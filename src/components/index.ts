@@ -16,3 +16,5 @@ export * from './PricingPage';
 export * from './GameSelection';
 export * from './Link';
 export * from './AccountSettings';
+export * from './ChatBox';
+export * from './SubTitle';

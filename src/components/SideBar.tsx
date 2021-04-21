@@ -21,9 +21,7 @@ const Menu = styled.ul`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding-top: 94px;
-  padding-bottom: 120px;
 `;
 
 type MenuItemProps = {
@@ -45,6 +43,10 @@ const MenuItem = styled.li<MenuItemProps>`
   background-color: ${({ selected }) => (selected ? '#EAE9FF' : null)};
   box-shadow: ${({ selected }) =>
     selected ? '4px 4px 4px rgba(0, 0, 0, 0.25)' : null};
+
+  &:not(:last-child) {
+    margin-bottom: 48px;
+  }
 `;
 
 const sideBarItems = [
