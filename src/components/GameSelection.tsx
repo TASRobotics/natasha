@@ -18,6 +18,10 @@ const Container = styled.div`
   background: #ffffff;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+
+  &:not(:last-child) {
+    margin-right: 70px;
+  }
 `;
 
 const Img = styled.img`

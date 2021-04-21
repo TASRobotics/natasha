@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Title as BaseTitle, GameSelection, Button } from '../../components';
 import { UserContext } from '../../context';
 import SpaceInvadersImg from '../../games/SpaceInvaders/img.jpg';
+import PacManImg from '../../games/PacMan/img.png';
 import { SpaceInvaders } from '../../games';
 
 const GameContainer = styled.div`
@@ -18,6 +19,12 @@ const GameContainer = styled.div`
 const Title = styled(BaseTitle)`
   color: #000;
   margin-bottom: 93px;
+`;
+
+const GameSelectionContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
 `;
 
 export const Games = () => {
@@ -54,14 +61,22 @@ export const Games = () => {
   return (
     <div>
       <Title>Games</Title>
-      <GameSelection
-        title='Space Invaders'
-        description={`It's Space Invaders!`}
-        img={SpaceInvadersImg}
-        onStart={() => {
-          setGame('space-invaders');
-        }}
-      />
+      <GameSelectionContainer>
+        <GameSelection
+          title='Space Invaders'
+          description={`It's Space Invaders!`}
+          img={SpaceInvadersImg}
+          onStart={() => {
+            setGame('space-invaders');
+          }}
+        />
+        <GameSelection
+          title='Pac-Man'
+          description={`It's Pac-Man!`}
+          img={PacManImg}
+          onStart={() => {}}
+        />
+      </GameSelectionContainer>
     </div>
   );
 };
