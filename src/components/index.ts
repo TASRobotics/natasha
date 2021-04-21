@@ -14,3 +14,5 @@ export * from './GamesDescriptions';
 export * from './ContactUsPage';
 export * from './PricingPage';
 export * from './GameSelection';
+export * from './Link';
+export * from './AccountSettings';

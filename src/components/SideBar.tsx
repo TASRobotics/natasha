@@ -18,7 +18,12 @@ const Aside = styled.aside`
 `;
 
 const Menu = styled.ul`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding-top: 94px;
+  padding-bottom: 120px;
 `;
 
 type MenuItemProps = {
@@ -57,7 +62,6 @@ export const SideBar = () => {
     <MenuItem
       key={i}
       onClick={() => {
-        console.log('hello');
         history.push(`/dashboard${route}`);
       }}
       selected={location.pathname === `/dashboard${route}`}
