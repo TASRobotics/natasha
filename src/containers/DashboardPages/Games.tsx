@@ -5,6 +5,8 @@ import { Title as BaseTitle, GameSelection, Button } from '../../components';
 import { UserContext } from '../../context';
 import SpaceInvadersImg from '../../games/SpaceInvaders/img.jpg';
 import PacManImg from '../../games/PacMan/img.png';
+import DonkeyKongImg from '../../games/DonkeyKong/img.png';
+import HoleInTheWallImg from '../../games/HoleInTheWall/img.png';
 import { SpaceInvaders } from '../../games';
 
 const GameContainer = styled.div`
@@ -74,6 +76,18 @@ export const Games = () => {
           title='Pac-Man'
           description={`It's Pac-Man!`}
           img={PacManImg}
+          onStart={() => {}}
+        />
+        <GameSelection
+          title='Donkey Kong'
+          description={`It's Donkey Kong!`}
+          img={DonkeyKongImg}
+          onStart={() => {}}
+        />
+        <GameSelection
+          title='Hole in the Wall'
+          description={`Hole in the Wall!`}
+          img={HoleInTheWallImg}
           onStart={() => {}}
         />
       </GameSelectionContainer>

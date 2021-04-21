@@ -19,6 +19,8 @@ const Container = styled.div`
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 
+  margin-bottom: 70px;
+
   &:not(:last-child) {
     margin-right: 70px;
   }
@@ -30,6 +32,7 @@ const Img = styled.img`
   left: -35px;
   width: 188px;
   height: 188px;
+
   border-radius: 50%;
 `;
 
