@@ -91,14 +91,17 @@ const TextInput: FC<TextInputProps> = ({ label, value, onChange }) => {
 type AccountSettingsProps = {
   firstName: string;
   lastName: string;
+  email: string;
 };
 
 export const AccountSettings: FC<AccountSettingsProps> = ({
   firstName: defaultFirstName,
-  lastName: defaultLastName
+  lastName: defaultLastName,
+  email: defaultEmail
 }) => {
   const [firstName, setFirstName] = useState<string>(defaultFirstName);
   const [lastName, setLastName] = useState<string>(defaultLastName);
+  const [email, setEmail] = useState<string>(defaultEmail);
 
   return (
     <Container>
@@ -118,7 +121,7 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
           />
           <TextInput label='Age' value={'27'} onChange={() => {}} />
           <TextInput label='Gender' value={'Male'} onChange={() => {}} />
-          <TextInput label='Email' value={''} onChange={() => {}} />
+          <TextInput label='Email' value={email} onChange={() => {}} />
         </Box>
         <Box>
           <SubTitle>Medical Information</SubTitle>

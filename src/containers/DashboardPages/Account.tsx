@@ -45,10 +45,14 @@ export const Account = () => {
     <div>
       <Title>Hello {user.firstName}</Title>
       <TopDiv>
-        <Plan>Basic Plan</Plan>
+        <Plan>Wellness Plan</Plan>
         <Link>UPGRADE NOW {'->'}</Link>
       </TopDiv>
-      <AccountSettings firstName={user.firstName} lastName={user.lastName} />
+      <AccountSettings
+        firstName={user.firstName}
+        lastName={user.lastName}
+        email={user.email}
+      />
     </div>
   );
 };
