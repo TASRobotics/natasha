@@ -43,14 +43,12 @@ const LabelContainer = styled.div`
   width: 100px;
 `;
 
-const DropdownContent = styled.div`
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
-  z-index: 1;
+const SubContainer = styled.div`
+  display: flex;
+`;
+
+const Box = styled.div`
+  flex: 1 0 auto;
 `;
 
 type TextInputProps = {
@@ -105,9 +103,38 @@ export const AccountSettings: FC<AccountSettingsProps> = ({
   return (
     <Container>
       <Title>Account Settings</Title>
-      <SubTitle>Personal Information</SubTitle>
-      <TextInput label='First Name' value={firstName} onChange={setFirstName} />
-      <TextInput label='Last Name' value={lastName} onChange={setLastName} />
+      <SubContainer>
+        <Box>
+          <SubTitle>Personal Information</SubTitle>
+          <TextInput
+            label='First Name'
+            value={firstName}
+            onChange={setFirstName}
+          />
+          <TextInput
+            label='Last Name'
+            value={lastName}
+            onChange={setLastName}
+          />
+          <TextInput label='Age' value={'27'} onChange={() => {}} />
+          <TextInput label='Gender' value={'Male'} onChange={() => {}} />
+          <TextInput label='Email' value={''} onChange={() => {}} />
+        </Box>
+        <Box>
+          <SubTitle>Medical Information</SubTitle>
+          <TextInput label='Type of Stroke' value={''} onChange={() => {}} />
+          <TextInput
+            label='Affected Body Parts'
+            value={''}
+            onChange={() => {}}
+          />
+          <TextInput
+            label='Number of occurrences'
+            value={''}
+            onChange={() => {}}
+          />
+        </Box>
+      </SubContainer>
     </Container>
   );
 };
