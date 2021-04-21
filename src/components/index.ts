@@ -18,3 +18,4 @@ export * from './Link';
 export * from './AccountSettings';
 export * from './ChatBox';
 export * from './SubTitle';
+export * from './TextArea';

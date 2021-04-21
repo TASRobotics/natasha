@@ -1,11 +1,30 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import { Title as BaseTitle } from '../../components';
+import {
+  Title as BaseTitle,
+  SubTitle as BaseSubTitle,
+  TextArea as BaseTextArea,
+  Button as BaseButton
+} from '../../components';
 
 import { UserContext } from '../../context';
 
 const Title = styled(BaseTitle)`
   color: #000;
+`;
+
+const SubTitle = styled(BaseSubTitle)`
+  color: #000;
+`;
+
+const TextArea = styled(BaseTextArea)`
+  margin-top: 68px;
+  height: 200px;
+`;
+
+const Button = styled(BaseButton)`
+  margin-top: 24px;
+  width: 100%;
 `;
 
 export const Help = () => {
@@ -15,7 +34,10 @@ export const Help = () => {
 
   return (
     <div>
-      <Title>Frequently Asked Questions</Title>
+      <Title>Support</Title>
+      <SubTitle>Please describe your problem.</SubTitle>
+      <TextArea placeholder='Report your problem.' />
+      <Button>Submit</Button>
     </div>
   );
 };
