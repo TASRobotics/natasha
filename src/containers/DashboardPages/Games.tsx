@@ -1,12 +1,23 @@
 import { useContext, useState, ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { Title as BaseTitle, GameSelection, Button } from '../../components';
+import {
+  Title as BaseTitle,
+  SubTitle as BaseSubTitle,
+  GameSelection,
+  Button,
+  ForYou
+} from '../../components';
 import { UserContext } from '../../context';
 import SpaceInvadersImg from '../../games/SpaceInvaders/img.jpg';
 import PacManImg from '../../games/PacMan/img.png';
 import DonkeyKongImg from '../../games/DonkeyKong/img.png';
 import HoleInTheWallImg from '../../games/HoleInTheWall/img.png';
+import TetrisImg from '../../assets/images/tetris.png';
+import MarioImg from '../../assets/images/mario.png';
+import PongImg from '../../assets/images/pong.png';
+import FroggerImg from '../../assets/images/frogger.png';
+import GalagaImg from '../../assets/images/galaga.png';
 import { SpaceInvaders } from '../../games';
 
 const GameContainer = styled.div`
@@ -20,6 +31,11 @@ const GameContainer = styled.div`
 
 const Title = styled(BaseTitle)`
   color: #000;
+`;
+
+const SubTitle = styled(BaseSubTitle)`
+  color: #000;
+  margin-top: -20px;
   margin-bottom: 93px;
 `;
 
@@ -27,6 +43,34 @@ const GameSelectionContainer = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+`;
+
+const ForYouContainer = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: -80px;
+  margin-left: -40px;
+  padding-top: 50px;
+  padding-left: 40px;
+  overflow: auto;
+  /* width */
+  ::-webkit-scrollbar {
+    height: 8px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #eae9ff;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #888;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 `;
 
 export const Games = () => {
@@ -63,6 +107,7 @@ export const Games = () => {
   return (
     <div>
       <Title>Games</Title>
+      <SubTitle>Continue Playing</SubTitle>
       <GameSelectionContainer>
         <GameSelection
           title='Space Invaders'
@@ -91,6 +136,46 @@ export const Games = () => {
           onStart={() => {}}
         />
       </GameSelectionContainer>
+      <SubTitle>For You</SubTitle>
+      <div>
+        <ForYouContainer>
+          <GameSelection
+            title='Tetris'
+            description={`Tetris!`}
+            img={TetrisImg}
+            onStart={() => {}}
+            forYou
+          />
+          <GameSelection
+            title='Super Mario'
+            description={`Super Mario!`}
+            img={MarioImg}
+            onStart={() => {}}
+            forYou
+          />
+          <GameSelection
+            title='Pong'
+            description={`Pong!`}
+            img={PongImg}
+            onStart={() => {}}
+            forYou
+          />
+          <GameSelection
+            title='Frogger'
+            description={`Frogger!`}
+            img={FroggerImg}
+            onStart={() => {}}
+            forYou
+          />
+          <GameSelection
+            title='Galaga'
+            description={`Galaga!`}
+            img={GalagaImg}
+            onStart={() => {}}
+            forYou
+          />
+        </ForYouContainer>
+      </div>
     </div>
   );
 };

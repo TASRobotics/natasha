@@ -18,7 +18,8 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   padding: 80px 90px;
-  width: 100%;
+  width: 0px;
+  flex: 1 0 0px;
 `;
 
 export const Dashboard = () => {

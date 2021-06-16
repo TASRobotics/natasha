@@ -3,7 +3,12 @@ import styled from 'styled-components';
 
 import { Button as BaseButton } from './Button';
 
-const Container = styled.div`
+type ContainerProps = {
+  forYou?: boolean;
+};
+
+const Container = styled.div<ContainerProps>`
+  ${({ forYou }) => (forYou ? 'flex: 1 0 414px;' : null)}
   position: relative;
   width: 414px;
   height: 237px;
@@ -19,7 +24,7 @@ const Container = styled.div`
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 
-  margin-bottom: 70px;
+  margin-bottom: ${({ forYou }) => (forYou ? '20px' : '70px')};
 
   &:not(:last-child) {
     margin-right: 70px;
@@ -34,6 +39,7 @@ const Img = styled.img`
   height: 188px;
 
   border-radius: 50%;
+  object-fit: cover;
 `;
 
 const DescriptionContainer = styled.div`
@@ -58,16 +64,18 @@ type GameSelectionProps = {
   description: string;
   onStart: () => void;
   img: string;
+  forYou?: boolean;
 };
 
 export const GameSelection: FC<GameSelectionProps> = ({
   title,
   description,
   onStart,
-  img
+  img,
+  forYou
 }) => {
   return (
-    <Container>
+    <Container forYou={forYou}>
       <Img src={img} alt='game' />
       <DescriptionContainer>
         <Title>{title}</Title>
