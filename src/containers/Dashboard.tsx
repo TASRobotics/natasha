@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 
 import { NavBar, SideBar } from '../components';
-import { Account, Games, Therapist, Help } from './DashboardPages';
+import { Account, Games, Therapist, Help, Report } from './DashboardPages';
 
 const Container = styled.div`
   display: flex;
@@ -30,6 +30,7 @@ export const Dashboard = () => {
         <SideBar />
         <Content>
           <Switch>
+            <Route path='/dashboard/report'>{<Report />}</Route>
             <Route path='/dashboard/help'>{<Help />}</Route>
             <Route path='/dashboard/therapist'>{<Therapist />}</Route>
             <Route path='/dashboard/games'>{<Games />}</Route>

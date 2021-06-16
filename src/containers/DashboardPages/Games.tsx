@@ -5,8 +5,7 @@ import {
   Title as BaseTitle,
   SubTitle as BaseSubTitle,
   GameSelection,
-  Button,
-  ForYou
+  Button
 } from '../../components';
 import { UserContext } from '../../context';
 import SpaceInvadersImg from '../../games/SpaceInvaders/img.jpg';
@@ -35,7 +34,6 @@ const Title = styled(BaseTitle)`
 
 const SubTitle = styled(BaseSubTitle)`
   color: #000;
-  margin-top: -20px;
   margin-bottom: 93px;
 `;
 
@@ -136,7 +134,7 @@ export const Games = () => {
           onStart={() => {}}
         />
       </GameSelectionContainer>
-      <SubTitle>For You</SubTitle>
+      <SubTitle style={{ marginTop: -20 }}>For You</SubTitle>
       <div>
         <ForYouContainer>
           <GameSelection

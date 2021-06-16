@@ -19,4 +19,3 @@ export * from './AccountSettings';
 export * from './ChatBox';
 export * from './SubTitle';
 export * from './TextArea';
-export * from './ForYou';

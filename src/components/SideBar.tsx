@@ -53,7 +53,7 @@ const sideBarItems = [
   { name: 'Account', route: '', icon: <AiOutlineUser /> },
   { name: 'Games', route: '/games', icon: <MdVideogameAsset /> },
   { name: 'Therapist', route: '/therapist', icon: <VscPerson /> },
-  { name: 'Help', route: '/help', icon: <MdHelp /> }
+  { name: 'Help', route: '/report', icon: <MdHelp /> }
 ];
 
 export const SideBar = () => {
