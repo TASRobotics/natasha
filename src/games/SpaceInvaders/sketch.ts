@@ -37,7 +37,7 @@ export const preload = (p5: p5Types) => {
   bulletImg = p5.loadImage(BulletImg);
 
   //"cosmic alien" font
-  invaderFont = p5.loadFont('http://localhost:5000/cosmicalienfont.ttf');
+  invaderFont = p5.loadFont('http://localhost:5000/ca.ttf');
 };
 
 export const setup = (p5: p5Types, parentRef: Element) => {

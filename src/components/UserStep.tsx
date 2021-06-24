@@ -65,8 +65,8 @@ export const UserStep: FC<UserStepProps> = ({
         {title}
       </TitleContainer>
       <ContentContainer>
-        {content.map((item) => (
-          <div>{`- ${item}`}</div>
+        {content.map((item, idx) => (
+          <div key={idx}>{`- ${item}`}</div>
         ))}
       </ContentContainer>
     </TextContainer>

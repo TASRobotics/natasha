@@ -9,15 +9,16 @@ import {
 } from '../../components';
 import { UserContext } from '../../context';
 import SpaceInvadersImg from '../../games/SpaceInvaders/img.jpg';
-import PacManImg from '../../games/PacMan/img.png';
-import DonkeyKongImg from '../../games/DonkeyKong/img.png';
 import HoleInTheWallImg from '../../games/HoleInTheWall/img.png';
+import PacManImg from '../../assets/images/pacman.png';
+import DonkeyKongImg from '../../assets/images/donkeykong.png';
 import TetrisImg from '../../assets/images/tetris.png';
 import MarioImg from '../../assets/images/mario.png';
 import PongImg from '../../assets/images/pong.png';
 import FroggerImg from '../../assets/images/frogger.png';
 import GalagaImg from '../../assets/images/galaga.png';
 import { SpaceInvaders } from '../../games';
+import { HoleInTheWall } from '../../games';
 
 const GameContainer = styled.div`
   height: 100%;
@@ -81,6 +82,9 @@ export const Games = () => {
       case 'space-invaders':
         gameNode = <SpaceInvaders />;
         break;
+      case 'hole-in-the-wall':
+        gameNode = <HoleInTheWall />;
+        break;
       default:
         gameNode = <></>;
         break;
@@ -116,6 +120,14 @@ export const Games = () => {
           }}
         />
         <GameSelection
+          title='Hole in the Wall'
+          description={`Hole in the Wall!`}
+          img={HoleInTheWallImg}
+          onStart={() => {
+            setGame('hole-in-the-wall');
+          }}
+        />
+        <GameSelection
           title='Pac-Man'
           description={`It's Pac-Man!`}
           img={PacManImg}
@@ -125,12 +137,6 @@ export const Games = () => {
           title='Donkey Kong'
           description={`It's Donkey Kong!`}
           img={DonkeyKongImg}
-          onStart={() => {}}
-        />
-        <GameSelection
-          title='Hole in the Wall'
-          description={`Hole in the Wall!`}
-          img={HoleInTheWallImg}
           onStart={() => {}}
         />
       </GameSelectionContainer>

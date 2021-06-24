@@ -33,11 +33,25 @@ app.use('/api/admin', adminRoute);
 
 const port = process.env.PORT || 5000;
 
-app.get('/cosmicalienfont.ttf', (req, res) => {
-  res.sendFile(
-    path.join(__dirname, '..', 'src', 'games', 'SpaceInvaders', 'ca.ttf')
-  );
-});
+const spaceInvadersStaticPath = path.join(
+  __dirname,
+  '..',
+  'src',
+  'games',
+  'SpaceInvaders',
+  'static'
+);
+app.use(express.static(spaceInvadersStaticPath));
+
+const holeInTheWallStaticPath = path.join(
+  __dirname,
+  '..',
+  'src',
+  'games',
+  'HoleInTheWall',
+  'static'
+);
+app.use(express.static(holeInTheWallStaticPath));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
